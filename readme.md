@@ -97,7 +97,7 @@ For every condition:
     * If the condition can be satisfied, signal the condition variable and return.
 
 If no thread was signaled, unlock the monitor.  
-> *Note*: We don't unlock the monitor if a thread was signaled because the signaled thread will unlock the monitor after it finishes executing. The lock is basically passed to the next thread until there is no more work to be done.
+> *Note*: We don't unlock the monitor if a thread was signaled. The lock is basically passed to the next thread until there is no more work to be done.
 
 ## How to run the program?
 This project uses the `CMake` build system.  
