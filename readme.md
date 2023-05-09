@@ -13,8 +13,6 @@ There are 4 types of threads: `prod_even`, `prod_odd`, `cons_even`, `cons_odd`.
 
 ## What is a condition variable?
 A condition variable is a synchronization primitive that allows threads to wait for a certain condition to occur.  
-The structure consists of a semaphore and a counter that keeps track of the number of threads waiting for the condition to occur.  
-The semaphore is used to block the threads that are waiting for the condition to occur.  
 In this implementation the condition variable data structure looks like this:
 ```c
 // Condition variable
@@ -35,8 +33,7 @@ The `cond_wait` function blocks the thread that calls it and increments the wait
 The `cond_signal` function decrements the wait count and unblocks a thread that is waiting on the condition variable.
 
 ## What is a monitor?
-A monitor is a synchronization primitive that allows to protect a shared resource by allowing only one thread to access it at a time.  
-The monitor holds a mutex that is used to block the threads that are trying to access the shared resource.  
+In concurrent programming, a monitor is a synchronization construct that allows threads to have both mutual exclusion and the ability to wait (block) for a certain condition to become false. Monitors also have a mechanism for signaling other threads that their condition has been met.
 In this implementation the monitor data structure looks like this:
 ```c
 // Monitor
@@ -60,7 +57,7 @@ int monitor_signal(monitor_t*, cond_t*);
 ```
 The `monitor_enter` function locks the mutex of the monitor.  
 The `monitor_leave` function unlocks the mutex of the monitor.  
-The `monitor_wait` function blocks the thread that calls it and unlocks the mutex of the monitor.
+The `monitor_wait` function unlocks the mutex and waits on a condition variable.   
 The `monitor_signal` function unblocks a thread that is waiting on the condition variable.
 
 ## Operating on the queue
